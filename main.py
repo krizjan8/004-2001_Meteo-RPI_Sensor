@@ -145,7 +145,7 @@ class BMP280i2c(BMx280i2c):
         data = self.get_data()
 
         return {self.temperature_tag : (data.temperature * self.temp_slope + self.temp_offset),
-                self.pressure_tag : (data.pressure * self.press_offset)}
+                self.pressure_tag : (data.pressure + self.press_offset)}
 
 class BME280i2c(BMx280i2c):
 
@@ -160,8 +160,8 @@ class BME280i2c(BMx280i2c):
         data = self.get_data()
 
         return {self.temperature_tag : (data.temperature * self.temp_slope + self.temp_offset),
-                self.pressure_tag : (data.pressure * self.press_offset),
-                self.humidity_tag : (data.humidity * self.humi_offset)}
+                self.pressure_tag : (data.pressure + self.press_offset),
+                self.humidity_tag : (data.humidity + self.humi_offset)}
 
 def init_sensor(type):
     switcher = {
